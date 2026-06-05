@@ -1,5 +1,6 @@
 package me.projects.cnpjtame.service;
 
+import me.projects.cnpjtame.utils.CnpjUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -10,14 +11,16 @@ public class CnpjGenerator {
 
     private final Random random = new Random();
     CnpjValidator cnpjValidator;
+    CnpjUtils cnpjUtils;
 
-    public CnpjGenerator(CnpjValidator cnpjValidator) {
+    public CnpjGenerator(CnpjValidator cnpjValidator,  CnpjUtils cnpjUtils) {
         this.cnpjValidator = cnpjValidator;
+        this.cnpjUtils = cnpjUtils;
     }
 
     public String GenerateCnpj() {
 
-        final StringBuilder cnpjBase = new StringBuilder();
+        final StringBuilder baseCnpj = new StringBuilder();
 
         /*
         Laço usado para criar os primeiros 8 dígitos Raiz do CNPJ.
@@ -25,7 +28,7 @@ public class CnpjGenerator {
         for (int i = 0; i < 8; i++) {
             int index = random.nextInt(cnpjAlfaNumerico.length());
             char character = cnpjAlfaNumerico.charAt(index);
-            cnpjBase.append(character);
+            baseCnpj.append(character);
         }
 
         /*
@@ -35,12 +38,11 @@ public class CnpjGenerator {
         for (int i = 0; i < 4; i++) {
             int index = random.nextInt(cnpjAlfaNumerico.length());
             char character = cnpjAlfaNumerico.charAt(index);
-            cnpjBase.append(character);
+            baseCnpj.append(character);
         }
 
-        cnpjBase.append(cnpjValidator.digitCheckerGenerator(cnpjBase.toString()));
+        baseCnpj.append(cnpjValidator.digitCheckerGenerator(baseCnpj.toString()));
 
-        return cnpjBase.toString();
-
+        return cnpjUtils.formatCnpj(baseCnpj.toString());
     }
 }

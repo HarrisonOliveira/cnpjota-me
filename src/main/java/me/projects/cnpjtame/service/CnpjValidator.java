@@ -21,6 +21,8 @@ public class CnpjValidator {
         int[] weightsDV1 = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
         int[] weightsDV2 = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
 
+        StringBuilder digits = new StringBuilder();
+
         int sum = 0;
         int DV1;
         int DV2;
@@ -40,9 +42,10 @@ public class CnpjValidator {
         sum = 0;
         for (int i = 0; i < 13; i++) sum += ((int) cnpj.charAt(i) - 48) * weightsDV2[i];
         DV2 = (sum % 11) <= 1 ? 0 : 11 - (sum % 11);
-        cnpj += DV2;
 
-        return cnpjUtils.formatCnpj(cnpj);
+        digits.append(DV1).append(DV2);
+
+        return digits.toString();
     }
 
 }
