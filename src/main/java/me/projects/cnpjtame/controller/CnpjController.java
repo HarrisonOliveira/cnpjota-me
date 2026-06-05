@@ -13,7 +13,7 @@ public class CnpjController {
         this.cnpjGenerator = cnpjGenerator;
     }
 
-    @GetMapping
+    @GetMapping(name = "cnpj")
     public ResponseEntity<String> postCnpj() {
         return ResponseEntity.ok().body(cnpjGenerator.GenerateCnpj());
     }
