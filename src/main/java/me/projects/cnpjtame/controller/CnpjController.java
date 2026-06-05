@@ -2,19 +2,21 @@ package me.projects.cnpjtame.controller;
 
 import me.projects.cnpjtame.service.CnpjGenerator;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller("api/v1/")
+@RestController
+@RequestMapping("api/v1/cnpj")
 public class CnpjController {
-    CnpjGenerator cnpjGenerator;
+    private final CnpjGenerator cnpjGenerator;
 
     public CnpjController(CnpjGenerator cnpjGenerator) {
         this.cnpjGenerator = cnpjGenerator;
     }
 
-    @GetMapping(name = "cnpj")
-    public ResponseEntity<String> postCnpj() {
-        return ResponseEntity.ok().body(cnpjGenerator.GenerateCnpj());
+    @GetMapping
+    public ResponseEntity<String> getCnpj() {
+        return ResponseEntity.ok(cnpjGenerator.generateCnpj());
     }
 }

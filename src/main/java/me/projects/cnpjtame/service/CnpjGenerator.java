@@ -9,16 +9,16 @@ import java.util.Random;
 public class CnpjGenerator {
     static final String cnpjAlfaNumerico = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+    private final CnpjUtils cnpjUtils =  new CnpjUtils();
     private final Random random = new Random();
-    CnpjValidator cnpjValidator;
-    CnpjUtils cnpjUtils;
+    private final CnpjValidator cnpjValidator;
 
-    public CnpjGenerator(CnpjValidator cnpjValidator,  CnpjUtils cnpjUtils) {
+    public CnpjGenerator(CnpjValidator cnpjValidator) {
         this.cnpjValidator = cnpjValidator;
-        this.cnpjUtils = cnpjUtils;
+
     }
 
-    public String GenerateCnpj() {
+    public String generateCnpj() {
 
         final StringBuilder baseCnpj = new StringBuilder();
 
