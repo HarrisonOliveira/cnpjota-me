@@ -17,4 +17,15 @@ public class CnpjUtils {
     public String sanitize(String cnpj) {
         return cnpj.replaceAll("-\\w{2}$", "").replaceAll("[^a-zA-Z0-9]", "");
     }
+
+    /**
+     * @return Retorna o CNPJ sem caracteres especiais.
+     */
+    public static String sanitizeCnpj(String cnpj) {
+        return cnpj.replaceAll("[^a-zA-Z0-9]", "");
+    }
+
+    public static String getDigitChecker(String cnpj) {
+        return cnpj.substring(cnpj.length() - 2);
+    }
 }
