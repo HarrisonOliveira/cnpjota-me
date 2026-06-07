@@ -52,9 +52,8 @@ public class CnpjGenerator {
         int dv1;
         int dv2;
 
-        if (cnpj.length() != 8) {
-            cnpj = cnpjUtils.sanitize(cnpj);
-        }
+        if (cnpj.length() != 8) cnpj = cnpjUtils.sanitize(cnpj);
+
 
         /*
            Realiza o cálculo para gerar o primeiro Digito Verificador (dv1).
