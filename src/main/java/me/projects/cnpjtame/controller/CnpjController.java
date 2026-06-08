@@ -5,7 +5,7 @@ import me.projects.cnpjtame.dto.CnpjRequestDTO;
 import me.projects.cnpjtame.dto.CnpjResponseDTO;
 import me.projects.cnpjtame.service.CnpjGenerator;
 import me.projects.cnpjtame.service.CnpjValidator;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,10 +25,8 @@ public class CnpjController {
         return ResponseEntity.ok(cnpjGenerator.generateCnpj());
     }
 
-    @PostMapping
+    @PostMapping("/validar")
     public ResponseEntity<CnpjResponseDTO> postCnpj(@Valid @RequestBody CnpjRequestDTO cnpjRequestDTO) {
-        return ResponseEntity
-                .status(HttpStatusCode.valueOf(201))
-                .body(cnpjValidator.validateCnpj(cnpjRequestDTO));
+        return ResponseEntity.status(HttpStatus.OK).body(cnpjValidator.validateCnpj(cnpjRequestDTO));
     }
 }

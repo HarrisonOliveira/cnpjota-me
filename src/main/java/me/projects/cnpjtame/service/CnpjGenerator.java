@@ -19,7 +19,7 @@ public class CnpjGenerator {
         final StringBuilder baseCnpj = new StringBuilder();
 
         /*
-        Laço usado para criar os primeiros 8 dígitos Raiz do CNPJ.
+        Laço usado para criar os primeiros 8 dígitos Raiz do cnpj.
          */
         for (int i = 0; i < 8; i++) {
             int index = random.nextInt(cnpjAlfaNumerico.length());
@@ -28,7 +28,7 @@ public class CnpjGenerator {
         }
 
         /*
-        Laço usado para criar os 4 dígitos do CNPJ referentes a filial.
+        Laço usado para criar os 4 dígitos do cnpj referentes a filial.
         TODO: Esse Laço será separado posteriormente em função própria para gerar digitos para filiais.
          */
         for (int i = 0; i < 4; i++) {
@@ -52,7 +52,7 @@ public class CnpjGenerator {
         int dv1;
         int dv2;
 
-        if (cnpj.length() != 8) cnpj = cnpjUtils.sanitize(cnpj);
+        if (cnpj.length() != 8) cnpj = cnpjUtils.removeCheckDigit(cnpj);
 
 
         /*
