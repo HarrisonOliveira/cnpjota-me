@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
         ErrorResponseDTO error = ErrorResponseDTO.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
-                .message(e.getMessage())
+                .message("Corpo da requisição inválido ou malformado.")
                 .timestamp(LocalDateTime.now())
                 .build();
 
@@ -55,6 +55,6 @@ public class GlobalExceptionHandler {
                 .message(ex.getMessage())
                 .timestamp(LocalDateTime.now())
                 .build();
-        return ResponseEntity.badRequest().body(error);
+        return ResponseEntity.internalServerError().body(error);
     }
 }
