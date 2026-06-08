@@ -23,10 +23,12 @@ public class CnpjValidator {
 
     public CnpjResponseDTO validateCnpj(CnpjRequestDTO dto) {
 
-        String DvDTO= CnpjUtils.getDigitChecker(dto.cnpj());
-        String ValidDV = cnpjGenerator.digitCheckerGenerator(cnpjUtils.removeCheckDigit(dto.cnpj()));
+        String dvFromInput= CnpjUtils.getDigitChecker(dto.cnpj());
+        String validDv = cnpjGenerator.digitCheckerGenerator(dto.cnpj());
 
-        boolean valid = DvDTO.equals(ValidDV);
+
+
+        boolean valid = dvFromInput.equals(validDv);
         String message = valid
                 ? "Este CNPJ possui estrutura valida!"
                 : "Este CNPJ possui estrutura invalida!";

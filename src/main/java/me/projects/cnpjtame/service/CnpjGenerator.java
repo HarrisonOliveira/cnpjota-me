@@ -10,8 +10,13 @@ import java.util.Random;
 public class CnpjGenerator {
     static final String cnpjAlfaNumerico = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    private final CnpjUtils cnpjUtils =  new CnpjUtils();
+
     private final Random random = new Random();
+    private final CnpjUtils cnpjUtils;
+
+    public CnpjGenerator(CnpjUtils cnpjUtils) {
+        this.cnpjUtils = cnpjUtils;
+    }
 
 
     public String generateCnpj() {
@@ -52,7 +57,8 @@ public class CnpjGenerator {
         int dv1;
         int dv2;
 
-        if (cnpj.length() != 8) cnpj = cnpjUtils.removeCheckDigit(cnpj);
+        cnpj = CnpjUtils.sanitizeCnpj(cnpj);
+        if (cnpj.length() > 12) cnpj = cnpjUtils.removeCheckDigit(cnpj);
 
 
         /*
