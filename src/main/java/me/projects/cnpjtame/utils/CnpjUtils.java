@@ -16,14 +16,15 @@ public class CnpjUtils {
      * @return Remove os dois últimos dígitos verificadores para serem gerados e validados posteriormente.
      **/
     public String removeCheckDigit(String cnpj) {
-        return cnpj.replaceAll("-\\w{2}$", "");
+        if (cnpj.length() > 12) cnpj = cnpj.replaceAll("-\\w{2}$", "");
+        return cnpj;
     }
 
     /**
      * @return Retorna o CNPJ sem caracteres especiais.
      */
     public static String sanitizeCnpj(String cnpj) {
-        return cnpj.replaceAll("[^a-zA-Z0-9]", "");
+        return cnpj.replaceAll("[^a-zA-Z0-9]", "").toUpperCase();
     }
 
     /**

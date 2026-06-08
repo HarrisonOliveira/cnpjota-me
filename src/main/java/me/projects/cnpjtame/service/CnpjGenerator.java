@@ -1,5 +1,6 @@
 package me.projects.cnpjtame.service;
 
+import me.projects.cnpjtame.exception.InvalidCnpjException;
 import me.projects.cnpjtame.utils.CnpjUtils;
 import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
@@ -58,7 +59,11 @@ public class CnpjGenerator {
         int dv2;
 
         cnpj = CnpjUtils.sanitizeCnpj(cnpj);
-        if (cnpj.length() > 12) cnpj = cnpjUtils.removeCheckDigit(cnpj);
+
+        if(cnpj.length() != 12 && cnpj.length() != 14)
+            throw new InvalidCnpjException("CNPJ inválido. Deve conter 14 caracteres.");
+
+        cnpj = cnpjUtils.removeCheckDigit(cnpj);
 
 
         /*
