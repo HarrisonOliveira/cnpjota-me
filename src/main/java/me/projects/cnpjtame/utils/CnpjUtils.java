@@ -16,7 +16,7 @@ public class CnpjUtils {
      * @return Remove os dois últimos dígitos verificadores para serem gerados e validados posteriormente.
      **/
     public String removeCheckDigit(String cnpj) {
-        if (cnpj.length() > 12) cnpj = cnpj.replaceAll("-\\w{2}$", "");
+        if (cnpj.length() == 14) cnpj = cnpj.replaceAll("-\\w{2}$", "");
         return cnpj;
     }
 
